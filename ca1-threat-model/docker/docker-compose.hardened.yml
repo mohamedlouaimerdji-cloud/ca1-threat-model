@@ -1,0 +1,16 @@
+# HARDENED variant for your "mitigations" section (compare before/after).
+# EXPERIMENTAL: Juice Shop may need extra writable paths; adjust and note what you changed.
+services:
+  juice-shop:
+    image: bkimminich/juice-shop:latest
+    container_name: juice-shop-hardened
+    ports:
+      - "127.0.0.1:3001:3000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 200
+    mem_limit: 512m

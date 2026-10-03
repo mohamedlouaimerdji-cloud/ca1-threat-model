@@ -1,0 +1,8 @@
+# BASELINE target: default Juice Shop config. This is what you ASSESS.
+# Bound to 127.0.0.1 only so nobody else on your network can reach a deliberately vulnerable app.
+services:
+  juice-shop:
+    image: bkimminich/juice-shop:latest   # after pulling, record the exact version/digest in docs/01
+    container_name: juice-shop-baseline
+    ports:
+      - "127.0.0.1:3000:3000"
