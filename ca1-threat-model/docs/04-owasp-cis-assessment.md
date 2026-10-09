@@ -13,16 +13,16 @@
 
 | Category | Applies? | Finding(s) | Evidence | How useful was this category for THIS target? |
 |---|---|---|---|---|
-| **A01 Broken Access Control** | Yes | `/rest/admin/application-configuration` can be read without logging in. `/ftp` folder is browsable (`package.json.bak`, `suspicious_errors.yml`). `Access-Control-Allow-Origin: *` lets any website read responses. Further access-control tests **(to confirm)**. | `zap_private_ip.png`, `zap_cors.png`, `zap-report.html` | **High.** Juice Shop is built around this. But a scanner cannot know who *should* be allowed to see what, so real access-control flaws need manual testing. |
-| **A02 Security Misconfiguration** | Yes | No Content-Security-Policy, no X-Content-Type-Options, no anti-clickjacking header, CORS set to `*`. Container runs with default capabilities, writable filesystem, no limits. Original NSG had a default SSH-from-Any rule (threat M1, removed). | `zap_csp.png`, `zap_cors.png`, `docker-bench-bash.txt`, `docker_inspect` screenshot, `ssh_my_ip` screenshot | **High.** Best fit of all categories: it covers the app, the container and the cloud network in one place. |
-| **A03 Software Supply Chain Failures** | Yes | Trivy found HIGH/CRITICAL vulnerabilities in packages inside the image (69 in the JSON; confirm exact figure). Image is pulled from Docker Hub by tag, not pinned to a digest. | `trivy.json`, `trivy-high-critical.txt`, Trivy screenshots | **High for the image, limited for the app.** Fits Trivy output well. Many packages are never reached by the app, so the count overstates real risk. |
-| **A04 Cryptographic Failures** | Yes | The app is served over plain HTTP, no TLS. Only the SSH tunnel is encrypted. Password hashing and JWT signing **(to confirm)**. | `http_evidence` screenshot, `docs/03-existing-controls.md` | **Medium.** The tunnel hides the risk in our lab, so the category is better for explaining what would happen if the app were public. |
-| **A05 Injection** | Yes | ZAP raised SQL Injection (High, **Low confidence**) on `GET /rest/products/search?q=`. A `'(` input caused `SQLITE_ERROR: near "(": syntax error`. XSS **(to confirm)**. | `zap_sqli.png`, `zap-report.html` | **High.** Matches the scanner finding directly, but ZAP gives only a hint. Manual testing is needed to prove it. |
-| **A06 Insecure Design** | Yes | Design-level gaps found in the threat model: no rate limiting, no separation between app and admin functions, container holds app and data together, CSRF exposure (threat M3). | `Threat_Model_triaged.tm7`, `docs/02-threat-model-stride.md` | **Medium, and mostly conceptual.** No scanner finds design flaws. Our STRIDE model is the evidence, so this category justifies doing threat modelling at all. |
-| **A07 Authentication Failures** | Yes **(to confirm)** | Socket.IO session ID travels in the URL (ZAP). Login, weak passwords and JWT handling not yet tested by hand. | `zap_session_id_url.png`; hand tests pending | **High for Juice Shop, but not yet evidenced.** |
-| **A08 Software or Data Integrity Failures** | Partly | Image is not verified by signature or digest. No other integrity test done. | `docker ps` / `docker inspect` output | **Low here.** Little we tested maps to it. |
-| **A09 Security Logging and Alerting Failures** | Yes | Only container logs exist. No central log, no alerts, no NSG flow logs. The scan's attack traffic raised no alert. | `docker_logs` screenshot, `docs/03-existing-controls.md` | **High.** Found by reviewing controls, not by any scanner, which shows scanners miss this category. |
-| **A10 Mishandling of Exceptional Conditions** | Yes | The failing search request returns `500 Internal Server Error` with a SQLite error and stack trace shown to the user. | `zap_sqli.png` | **High.** Good fit, and a new category in 2025. |
+| **A01 Broken Access Control** | Yes | `/rest/admin/application-configuration` can be read without logging in. `/ftp` folder is browsable (`package.json.bak`, `suspicious_errors.yml`). `Access-Control-Allow-Origin: *` lets any website read responses. Further access-control tests **(to confirm)**. | `private_ip_disclosure.png`, `cross_domaine_misconfiguration.png`, `zap-report.html`, `ZAP-Report.json` | **High.** Juice Shop is built around this. But a scanner cannot know who *should* be allowed to see what, so real access-control flaws need manual testing. |
+| **A02 Security Misconfiguration** | Yes | No Content-Security-Policy, no X-Content-Type-Options, no anti-clickjacking header, CORS set to `*`. Container runs with default capabilities, writable filesystem, no limits. Original NSG had a default SSH-from-Any rule (threat M1, removed). | `no_Content-Security-Policy.png`, `cross_domaine_misconfiguration.png`, `clickjacking.png`, `docker-bench-bash.txt`, `docker_inspect.png`, `ssh_my_ip.png`, `VM_firewalls(public).png` | **High.** Best fit of all categories: it covers the app, the container and the cloud network in one place. |
+| **A03 Software Supply Chain Failures** | Yes | Trivy found HIGH/CRITICAL vulnerabilities in packages inside the image (69 in the JSON; confirm exact figure). Image is pulled from Docker Hub by tag, not pinned to a digest. | `trivy.json`, `trivy-high-critical.txt`, `trivy_total.png`, `trivy_summary_table_1.png`, `trivy_summary_table_2.png`, `trivy_findings_list_1.png`, `trivy_findings_list_2.png` | **High for the image, limited for the app.** Fits Trivy output well. Many packages are never reached by the app, so the count overstates real risk. |
+| **A04 Cryptographic Failures** | Yes | The app is served over plain HTTP, no TLS. Only the SSH tunnel is encrypted. Password hashing and JWT signing **(to confirm)**. | `http_evidence.png`, `docs/03-existing-controls.md` | **Medium.** The tunnel hides the risk in our lab, so the category is better for explaining what would happen if the app were public. |
+| **A05 Injection** | Yes | ZAP raised SQL Injection (High, **Low confidence**) on `GET /rest/products/search?q=`. A `'(` input caused `SQLITE_ERROR: near "(": syntax error`. XSS **(to confirm)**. | `sql__injection(critical).png`, `sqlinjection_web_confirmation.png` (check what this one shows), `zap-report.html` | **High.** Matches the scanner finding directly, but ZAP gives only a hint. Manual testing is needed to prove it. |
+| **A06 Insecure Design** | Yes | Design-level gaps found in the threat model: no rate limiting, no separation between app and admin functions, container holds app and data together, CSRF exposure (threat M3). | `Threat_Model_triaged.tm7`, `threat_triage_all_65.csv`, `trust_boundry_diagram.png`, `1_threat_list.png`, `2_threat_list.png`, `docs/02-threat-model-stride.md` | **Medium, and mostly conceptual.** No scanner finds design flaws. Our STRIDE model is the evidence, so this category justifies doing threat modelling at all. |
+| **A07 Authentication Failures** | Yes **(to confirm)** | Socket.IO session ID travels in the URL (ZAP). Login, weak passwords and JWT handling not yet tested by hand. | `sessionID_in_URL_rewrite.png`; hand tests pending | **High for Juice Shop, but not yet evidenced.** |
+| **A08 Software or Data Integrity Failures** | Partly | Image is not verified by signature or digest. No other integrity test done. | `docker_inspect.png` | **Low here.** Little we tested maps to it. |
+| **A09 Security Logging and Alerting Failures** | Yes | Only container logs exist. No central log, no alerts, no NSG flow logs. The scan's attack traffic raised no alert. | `docker_logs.png`, `docs/03-existing-controls.md` | **High.** Found by reviewing controls, not by any scanner, which shows scanners miss this category. |
+| **A10 Mishandling of Exceptional Conditions** | Yes | The failing search request returns `500 Internal Server Error` with a SQLite error and stack trace shown to the user. | `sql__injection(critical).png` | **High.** Good fit, and a new category in 2025. |
 
 ---
 
@@ -30,19 +30,19 @@
 
 ### 2a. CIS Docker Benchmark v1.6.0 (run with Docker Bench for Security)
 
-Result: **PASS 50, WARN 40, INFO 62** (`docker-bench-bash.txt`).
+Result: **PASS 50, WARN 40, INFO 62** (`docker-bench-bash.txt`, `docker_bench1.png` to `docker_bench5.png`, `docker_bench_warnlist.png`).
 
 > Before submitting, copy the **exact control IDs** from `docker-bench-bash.txt`. The IDs below are from the container section (5.x) and must be checked against your output.
 
 | Control ID | Recommendation | Pass/Fail | Evidence | Relevance to this target |
 |---|---|---|---|---|
-| 5.4 | Do not use privileged containers | **Pass** | `docker inspect`: Privileged=false | High. Stops a full host takeover through the container. |
-| 5.13 | Bind incoming container traffic to a specific host interface | **Pass** | `docker ps`: `127.0.0.1:3000->3000/tcp` | High. This is our main protection and the condition Dr Lemon set. |
-| 4.1 | Run the container as a non-root user | **Pass** | `docker inspect`: User=65532 | High. Limits what an attacker can do after a break-in. |
-| 5.12 | Mount the container root filesystem read-only | **Fail** | `docker inspect`: ReadOnly=false | Medium. Would block an attacker from writing files. May break Juice Shop. |
-| 5.10 | Limit memory use | **Fail** | `docker inspect`: Memory=0 | Medium. A flood of requests could use all VM memory. |
-| 5.3 | Restrict Linux kernel capabilities | **Fail** | `docker inspect`: CapDrop=[] | Medium. Default capabilities are more than the app needs. |
-| 5.25 | Block extra privileges (no-new-privileges) | **Fail** | `docker inspect`: SecurityOpt=[] | Medium. |
+| 5.4 | Do not use privileged containers | **Pass** | `docker_inspect.png`: Privileged=false | High. Stops a full host takeover through the container. |
+| 5.13 | Bind incoming container traffic to a specific host interface | **Pass** | `dockerjuiceshop_running(localhost).png`: `127.0.0.1:3000->3000/tcp` | High. This is our main protection and the condition Dr Lemon set. |
+| 4.1 | Run the container as a non-root user | **Pass** | `docker_inspect.png`: User=65532 | High. Limits what an attacker can do after a break-in. |
+| 5.12 | Mount the container root filesystem read-only | **Fail** | `docker_inspect.png`: ReadOnly=false | Medium. Would block an attacker from writing files. May break Juice Shop. |
+| 5.10 | Limit memory use | **Fail** | `docker_inspect.png`: Memory=0 | Medium. A flood of requests could use all VM memory. |
+| 5.3 | Restrict Linux kernel capabilities | **Fail** | `docker_inspect.png`: CapDrop=[] | Medium. Default capabilities are more than the app needs. |
+| 5.25 | Block extra privileges (no-new-privileges) | **Fail** | `docker_inspect.png`: SecurityOpt=[] | Medium. |
 
 ### 2b. Other CIS Benchmarks (honest scope note)
 
