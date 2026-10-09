@@ -1,0 +1,66 @@
+CRITICAL | crypto-js | 3.3.0 | 4.0.0 | CVE-2026-71851
+CRITICAL | crypto-js | 3.3.0 | 4.2.0 | CVE-2023-46233
+CRITICAL | decompress | 4.2.1 | - | CVE-2026-101894
+CRITICAL | decompress | 4.2.1 | - | CVE-2026-53486
+CRITICAL | jsonwebtoken | 0.1.0 | 4.2.2 | CVE-2015-9235
+CRITICAL | jsonwebtoken | 0.4.0 | 4.2.2 | CVE-2015-9235
+CRITICAL | lodash | 2.4.2 | 4.17.12 | CVE-2019-10744
+CRITICAL | marsdb | 0.6.11 | - | GHSA-5mrr-rgp6-x4gr
+CRITICAL | proxy-addr | 2.0.7 | 2.0.8 | CVE-2026-90711
+CRITICAL | tar | 6.2.1 | 7.5.19 | CVE-2026-59873
+HIGH | @fastify/busboy | 2.1.1 | 3.2.1 | CVE-2026-19481
+HIGH | base64url | 0.0.6 | >=3.0.0 | NSWG-ECO-428
+HIGH | brace-expansion | 1.1.18 | 5.0.10, 3.0.7, 2.1.5, 1.1.19 | CVE-2026-102276
+HIGH | brace-expansion | 1.1.18 | 5.0.11, 3.0.8, 2.1.6, 1.1.20 | CVE-2026-102278
+HIGH | brace-expansion | 2.1.4 | 5.0.10, 3.0.7, 2.1.5, 1.1.19 | CVE-2026-102276
+HIGH | brace-expansion | 2.1.4 | 5.0.11, 3.0.8, 2.1.6, 1.1.20 | CVE-2026-102278
+HIGH | compression | 1.8.1 | 1.8.2 | CVE-2026-87776
+HIGH | engine.io | 4.1.2 | 6.6.7 | CVE-2026-59725
+HIGH | express-jwt | 0.1.3 | 6.0.0 | CVE-2020-15084
+HIGH | http-cache-semantics | 3.8.1 | - | CVE-2026-93748
+HIGH | http-cache-semantics | 3.8.1 | 4.1.1 | CVE-2022-25881
+HIGH | http-cache-semantics | 4.2.0 | - | CVE-2026-93748
+HIGH | js-yaml | 3.15.1 | 4.3.2, 3.15.2 | CVE-2026-84375
+HIGH | jsonwebtoken | 0.1.0 | 9.0.0 | CVE-2022-23539
+HIGH | jsonwebtoken | 0.1.0 | >=4.2.2 | NSWG-ECO-17
+HIGH | jsonwebtoken | 0.4.0 | 9.0.0 | CVE-2022-23539
+HIGH | jsonwebtoken | 0.4.0 | >=4.2.2 | NSWG-ECO-17
+HIGH | jws | 0.2.6 | 3.2.3, 4.0.1 | CVE-2025-65945
+HIGH | jws | 0.2.6 | >=3.0.0 | CVE-2016-1000223
+HIGH | libssl3t64 | 3.5.6-1~deb13u2 | 3.5.7-1~deb13u2 | CVE-2026-14456
+HIGH | libssl3t64 | 3.5.6-1~deb13u2 | 3.5.7-1~deb13u3 | CVE-2026-75804
+HIGH | libssl3t64 | 3.5.6-1~deb13u2 | 3.5.7-1~deb13u3 | CVE-2026-84782
+HIGH | lodash | 2.4.2 | 4.17.21 | CVE-2021-23337
+HIGH | lodash | 2.4.2 | >=4.17.11 | CVE-2018-16487
+HIGH | minimatch | 3.0.5 | 10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3 | CVE-2026-26996
+HIGH | minimatch | 3.0.5 | 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3 | CVE-2026-27903
+HIGH | minimatch | 3.0.5 | 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4 | CVE-2026-27904
+HIGH | moment | 2.0.0 | 2.19.3 | CVE-2017-18214
+HIGH | moment | 2.0.0 | 2.29.2 | CVE-2022-24785
+HIGH | multer | 1.4.5-lts.2 | 2.0.0 | CVE-2025-47935
+HIGH | multer | 1.4.5-lts.2 | 2.0.0 | CVE-2025-47944
+HIGH | multer | 1.4.5-lts.2 | 2.0.1 | CVE-2025-48997
+HIGH | multer | 1.4.5-lts.2 | 2.0.2 | CVE-2025-7338
+HIGH | multer | 1.4.5-lts.2 | 2.1.0 | CVE-2026-2359
+HIGH | multer | 1.4.5-lts.2 | 2.1.0 | CVE-2026-3304
+HIGH | multer | 1.4.5-lts.2 | 2.1.1 | CVE-2026-3520
+HIGH | multer | 1.4.5-lts.2 | 2.2.0, 3.0.0-alpha.2 | CVE-2026-5079
+HIGH | multer | 1.4.5-lts.2 | 2.3.0 | CVE-2026-77078
+HIGH | multer | 1.4.5-lts.2 | 2.3.0 | CVE-2026-82333
+HIGH | sanitize-html | 1.4.2 | 2.7.1 | CVE-2022-25887
+HIGH | socket.io-parser | 4.0.5 | 3.3.5, 3.4.4, 4.2.6 | CVE-2026-33151
+HIGH | socket.io-parser | 4.0.5 | 4.2.7, 3.4.5, 3.3.6 | CVE-2026-69185
+HIGH | tar | 6.2.1 | 7.5.10 | CVE-2026-29786
+HIGH | tar | 6.2.1 | 7.5.11 | CVE-2026-31802
+HIGH | tar | 6.2.1 | 7.5.18 | CVE-2026-59874
+HIGH | tar | 6.2.1 | 7.5.21 | CVE-2026-73566
+HIGH | tar | 6.2.1 | 7.5.3 | CVE-2026-23745
+HIGH | tar | 6.2.1 | 7.5.4 | CVE-2026-23950
+HIGH | tar | 6.2.1 | 7.5.7 | CVE-2026-24842
+HIGH | tar | 6.2.1 | 7.5.8 | CVE-2026-26960
+HIGH | undici | 5.29.0 | 6.24.0, 7.24.0 | CVE-2026-1526
+HIGH | undici | 5.29.0 | 6.24.0, 7.24.0 | CVE-2026-2229
+HIGH | undici | 5.29.0 | 6.27.0, 7.28.0, 8.5.0 | CVE-2026-12151
+HIGH | ws | 7.4.6 | 5.2.4, 6.2.3, 7.5.10, 8.17.1 | CVE-2024-37890
+HIGH | ws | 7.4.6 | 5.2.5, 6.2.4, 7.5.11, 8.21.0 | CVE-2026-48779
+65 findings
