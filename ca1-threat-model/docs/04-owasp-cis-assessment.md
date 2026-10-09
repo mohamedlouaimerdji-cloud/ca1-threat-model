@@ -50,7 +50,7 @@ CIS also publishes benchmarks for **Ubuntu 24.04** (the VM operating system) and
 
 ---
 
-## 3. Critical evaluation (where the marks are)
+## 3. Critical evaluation 
 
 **Where the standards fit well**
 - **OWASP Top 10:2025** gave one shared vocabulary for results from different tools. A02, A03, A05 and A10 each matched a concrete finding.
