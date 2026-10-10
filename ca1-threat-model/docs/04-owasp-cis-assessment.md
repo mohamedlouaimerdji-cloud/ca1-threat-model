@@ -51,7 +51,7 @@ Control IDs and results below are copied from `docker-bench-bash.txt` (checked 1
 
 ### 2b. Other CIS Benchmarks (honest scope note)
 
-We did not run an automated CIS scan for Ubuntu 24.04 (the VM's OS) or for Azure. Both have their own CIS Benchmarks, and a full run was out of scope for this assignment's time. Instead, below is a small, honest mapping: real settings we checked by hand earlier in the project, lined up against the CIS control they relate to. This is a manual check, not a benchmark tool's Pass/Fail, and the table says so.
+I did not run an automated CIS scan for Ubuntu 24.04 (the VM's OS) or for Azure. Both have their own CIS Benchmarks, and a full run was out of scope for this assignment's time. Instead, below is a small, honest mapping: real settings I checked by hand earlier in the project, lined up against the CIS control they relate to. This is a manual check, not a benchmark tool's Pass/Fail, and the table says so.
 
 **CIS Microsoft Azure Foundations Benchmark**
 
