@@ -51,7 +51,24 @@ Control IDs and results below are copied from `docker-bench-bash.txt` (checked 1
 
 ### 2b. Other CIS Benchmarks (honest scope note)
 
-CIS also publishes benchmarks for **Ubuntu 24.04** (the VM operating system) and for **Microsoft Azure** (the cloud platform). **We did not run these.** For the platform layer we reviewed the NSG, SSH settings and public IP by hand (`docs/03-existing-controls.md`). That is a manual review, not a benchmark result, and the report states it as a limitation.
+We did not run an automated CIS scan for Ubuntu 24.04 (the VM's OS) or for Azure. Both have their own CIS Benchmarks, and a full run was out of scope for this assignment's time. Instead, below is a small, honest mapping: real settings we checked by hand earlier in the project, lined up against the CIS control they relate to. This is a manual check, not a benchmark tool's Pass/Fail, and the table says so.
+
+**CIS Microsoft Azure Foundations Benchmark**
+
+| Control | Recommendation | Result (manual check) | Evidence |
+|---|---|---|---|
+| 6.02 (CIS Azure Foundations v1.0) | Ensure that SSH access is restricted from the internet | **Pass.** The NSG rule `ssh_my_ip` allows TCP/22 from one specific IP address only, not from the internet. | `ssh_my_ip.png`, `VM_firewalls(public).png` |
+
+*Note: control numbering changes between CIS Azure Foundations Benchmark versions (the NSG/SSH restriction sits under the Networking section in each one I found); I verified 6.02 against CIS v1.0 wording only, and did not check it against a newer version, so treat the number as approximate if you cite a different edition.*
+
+**CIS Ubuntu Linux Benchmark (24.04 LTS)**
+
+| Area | What we checked | Result (manual check) | Evidence |
+|---|---|---|---|
+| SSH – root login | `sshd -T` output: `permitrootlogin without-password` | **Partial.** Root login over password is blocked, but root can still log in with a key. The stricter CIS recommendation is to disable root login entirely. | `Sshkeyonly_evidence.png` |
+| SSH – password authentication | `sshd -T` output: `passwordauthentication no` | **Pass.** Matches the CIS Benchmark's SSH hardening section, which requires key-only authentication. | `Sshkeyonly_evidence.png` |
+
+*I could not confirm the exact Ubuntu 24.04 CIS control numbers for these two items from a source I trust, so no ID is given here. State this as a limitation if asked for "control IDs" in this part.*
 
 ---
 
