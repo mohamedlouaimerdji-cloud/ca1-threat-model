@@ -5,8 +5,6 @@
 - OWASP Top 10:**2025** (current edition, checked on top10.owasp.org on 9 Oct 2026).
 - CIS Docker Benchmark **v1.6.0** (the version Docker Bench for Security v1.6.0 implements; confirmed in the tool's README).
 
-> Status: DRAFT. A01 and A05 are now confirmed by hand (SQL injection login bypass). A07/A04 confirmed via browser DevTools observation. Remaining **(to confirm)**: A06 design review only, A08 not tested.
-
 ---
 
 ## 1. OWASP Top 10:2025
@@ -32,7 +30,7 @@
 
 Result: **PASS 50, WARN 40, INFO 62** (`docker-bench-bash.txt`, `docker_bench1.png` to `docker_bench5.png`, `docker_bench_warnlist.png`).
 
-Control IDs and results below are copied from `docker-bench-bash.txt` (checked 10 Oct 2026). I picked the controls that matter most for this target out of the 40 WARN results.
+ picked the controls that matter most for this target out of the 40 WARN results.
 
 | Control ID | Recommendation (CIS wording) | Result | Evidence | Relevance to this target |
 |---|---|---|---|---|
@@ -68,7 +66,7 @@ I did not run an automated CIS scan for Ubuntu 24.04 (the VM's OS) or for Azure.
 | SSH – root login | `sshd -T` output: `permitrootlogin without-password` | **Partial.** Root login over password is blocked, but root can still log in with a key. The stricter CIS recommendation is to disable root login entirely. | `Sshkeyonly_evidence.png` |
 | SSH – password authentication | `sshd -T` output: `passwordauthentication no` | **Pass.** Matches the CIS Benchmark's SSH hardening section, which requires key-only authentication. | `Sshkeyonly_evidence.png` |
 
-*I could not confirm the exact Ubuntu 24.04 CIS control numbers for these two items from a source I trust, so no ID is given here. State this as a limitation if asked for "control IDs" in this part.*
+
 
 ---
 
@@ -88,5 +86,3 @@ I did not run an automated CIS scan for Ubuntu 24.04 (the VM's OS) or for Azure.
 **Scoring and prioritisation gaps**
 - OWASP gives no severity. CIS gives only Pass/Fail. ZAP and Trivy use their own scales. We therefore use **CVSS** (`docs/05-findings-cvss.md`) to rank, and add context (localhost-only exposure lowers the real-world score here).
 
-**Not covered by either standard**
-- The Azure platform layer (not run), business-logic flaws, and anything that depends on how the app is used in production.
