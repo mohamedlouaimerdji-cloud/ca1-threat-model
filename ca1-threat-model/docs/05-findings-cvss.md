@@ -151,8 +151,8 @@
 | Rank | Finding | Common name | Vector | Base Score | Severity |
 |---|---|---|---|---|---|
 | 1 | F1 – SQL injection auth bypass | SQL Injection – Authentication Bypass (CWE-89) | AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N | 9.1 | Critical |
-| 2 | F2 – Insecure session token | Insecure Session Token Storage (CWE-614/CWE-311) | AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N | 7.4 | High |
 | 3 | F6 – CVE-2026-19481 (@fastify/busboy) | @fastify/busboy Denial of Service | AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H | 7.5 | High |
+| 2 | F2 – Insecure session token | Insecure Session Token Storage (CWE-614/CWE-311) | AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N | 7.4 | High |
 | 4 | F3 – No TLS (plain HTTP) | Missing Transport Layer Encryption (CWE-319) | AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N | 5.9 | Medium |
 | 5 | F4 – Unauthenticated config disclosure | Unauthenticated Information Disclosure (CWE-200) | AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N | 5.3 | Medium |
 | 6 | F5 – Container hardening gaps | Insecure Container Configuration | AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L | 4.5 | Medium |
