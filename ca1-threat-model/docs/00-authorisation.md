@@ -35,4 +35,4 @@ These controls are evidenced in `docs/03-existing-controls.md`
 | OWASP Juice Shop application (self-deployed) | Any CCT system or network |
 | Docker container configuration | Any third-party service or production system |
 | Azure VM, NSG, and SSH/IAM configuration | Azure Storage / blob storage (not used in this deployment) |
-| Manual testing performed by the student, against their own instance, via the SSH tunnel only | Azure platform-wide CIS Benchmark automated scan (stated as a time-scope limitation in `docs/04-owasp-cis-assessment.md`) |
+| Manual testing performed by me, against their own instance, via the SSH tunnel only | Azure platform-wide CIS Benchmark automated scan (stated as a time-scope limitation in `docs/04-owasp-cis-assessment.md`) |
